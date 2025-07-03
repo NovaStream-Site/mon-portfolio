@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'Site Portfolio Responsif',
             description: 'Un portfolio personnel conçu pour être entièrement responsif et présenter mes compétences et projets.',
-            image: 'https://placehold.co/600x400/663399/FFFFFF?text=Responsive+Portfolio',
+            image: 'https://i.ibb.co/rLd131C/Capture.png',
             github: 'https://github.com/your-username/responsive-portfolio',
             demo: 'https://your-demo-link.com/portfolio',
             tech: ['HTML', 'CSS', 'JavaScript']
