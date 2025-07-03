@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - FRAITURE JUSTIN</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-inter min-h-screen transition-colors duration-300">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full z-50 p-4 bg-gray-800 shadow-md border-gray-700 border-b transition-colors duration-300">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-500">FRAITURE JUSTIN</a>
+            <div class="flex items-center space-x-4">
+                <a href="#about" class="hover:text-blue-400">À Propos</a>
+                <a href="#skills" class="hover:text-blue-400">Compétences</a>
+                <a href="#projects" class="hover:text-blue-400">Projets</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300" aria-label="Toggle theme">
+                    <!-- Icon will be inserted by JS -->
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gray-900">
+            <div class="relative z-10 animate-fadeInUp">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
+                    Développeur Web <span class="text-blue-500">Passionné</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+                    Je conçois des sites web modernes, performants et accessibles.
+                </p>
+                <a href="#projects" class="inline-block px-8 py-3 rounded-full text-lg font-semibold bg-blue-500 hover:bg-blue-600 text-white transition-all duration-300 hover-scale">
+                    Découvrir mes Projets
+                </a>
+            </div>
+            <div class="absolute inset-0 z-0 opacity-10">
+                <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-light"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-light animation-delay-2000"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    À <span class="text-blue-500">Propos</span>
+                </h2>
+                <div class="p-8 rounded-lg shadow-lg bg-gray-800 border-gray-700 border transition-all duration-300 hover-shadow">
+                    <p class="text-lg leading-relaxed mb-6">
+                        Bonjour ! Je suis FRAITURE JUSTIN, un développeur web passionné, né le 24/07/2007. Actuellement en Terminal Technologique STI2D au Lycée Pierre Bayle (2024/2025), j'ai également obtenu le Diplôme national du brevet des collèges avec mention bien en Juin 2021.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Mon objectif professionnel est de rejoindre une entreprise dynamique pour devenir développeur Web. Je suis une personne organisée, dynamique, ponctuelle et autonome, toujours prête à relever de nouveaux défis.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Mon intérêt pour le développement web s'est concrétisé par la création de petits sites web en HTML, CSS et JavaScript, ainsi que la création d'un petit jeu en C++. J'ai également eu une première expérience professionnelle lors d'un stage de 3ème en Janvier 2021 chez l'Entreprise Colas à Sedan, où j'ai pu observer les domaines de la télécommunication, de la géométrie et de la conduite de camion grue.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        En dehors du code, je suis impliqué dans l'association "Une rose un espoir" et je pratique le Ju-Jitsu (ceinture marron). J'aime également jouer aux jeux vidéo et en créer, voyager et faire de la randonnée.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Je suis constamment à l'affût des nouvelles tendances pour offrir des expériences utilisateur exceptionnelles et concevoir des solutions élégantes et performantes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    Mes <span class="text-blue-500">Compétences</span>
+                </h2>
+                <div id="skills-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <!-- Skills will be dynamically loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    Mes <span class="text-blue-500">Projets</span>
+                </h2>
+                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Projects will be dynamically loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto max-w-xl">
+                <h2 class="text-4xl font-bold text-center mb-12">
+                    Me <span class="text-blue-500">Contacter</span>
+                </h2>
+                <div class="p-8 rounded-lg shadow-lg bg-gray-800 border-gray-700 border transition-all duration-300 hover-shadow">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-lg font-medium mb-2">Nom</label>
+                            <input type="text" id="name" name="name"
+                                class="w-full p-3 rounded-md bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500 border"
+                                placeholder="FRAITURE JUSTIN" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full p-3 rounded-md bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500 border"
+                                placeholder="justinfraitureecole@gmail.com" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5"
+                                class="w-full p-3 rounded-md bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500 border"
+                                placeholder="Votre Message" required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full px-6 py-3 rounded-md text-lg font-semibold bg-blue-500 hover:bg-blue-600 text-white transition-colors duration-300">
+                            Envoyer le Message
+                        </button>
+                    </form>
+                    <div class="flex justify-center space-x-6 mt-8">
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-500 hover:text-blue-400 transition-colors duration-300" aria-label="LinkedIn Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://github.com/your-github-profile" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-500 hover:text-blue-400 transition-colors duration-300" aria-label="GitHub Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.37-1-3.37.4-.94.4-2.17 0-3.18 0 0-1 0-3 1.25a6.68 6.68 0 0 0-4 0c-2-1.25-3-1.25-3-1.25a4.2 4.2 0 0 0-1 3.37c-.65.99-1 2.12-1 3.37 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                        </a>
+                        <a href="mailto:justinfraitureecole@gmail.com" id="email-link"
+                            class="text-blue-500 hover:text-blue-400 transition-colors duration-300 flex items-center" aria-label="Email Address">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </a>
+                        <button id="copy-email-btn" class="text-blue-500 hover:text-blue-400 transition-colors duration-300" aria-label="Copy Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                        </button>
+                    </div>
+                    <div id="copy-message" class="mt-4 text-center text-sm text-green-500 hidden">Email copié !</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-sm bg-gray-800 border-gray-700 border-t transition-colors duration-300">
+        <p>&copy; 2025 FRAITURE JUSTIN. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 p-3 rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 z-50 hidden" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
