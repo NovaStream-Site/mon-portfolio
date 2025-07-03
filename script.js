@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Un portfolio personnel conçu pour être entièrement responsif et présenter mes compétences et projets.',
             image: 'https://i.ibb.co/rLd131C/Capture.png',
             github: 'https://github.com/NovaStream-Site/mon-portfolio',
-            demo: 'https://your-demo-link.com/portfolio',
+            demo: 'https://novastream-site.github.io/mon-portfolio/',
             tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
