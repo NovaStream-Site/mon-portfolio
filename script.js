@@ -179,12 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const projectsData = [
         {
-            title: 'Application E-commerce',
-            description: 'Une plateforme d\'e-commerce complète avec gestion des produits, panier d\'achat et processus de commande sécurisé.',
-            image: 'https://placehold.co/600x400/336699/FFFFFF?text=E-commerce+App',
-            github: 'https://github.com/your-username/ecommerce-app',
-            demo: 'https://your-demo-link.com/ecommerce',
-            tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS']
+            title: 'Application de Streaming',
+            description: 'Une plateforme de streaming moderne avec système d’abonnement, accès au contenu en fonction des droits.',
+            image: 'https://i.ibb.co/d0nds7y2/Capture.png',
+            github: 'https://github.com/NovaStream-Site/NovaStream',
+            demo: 'https://urlr.me/PAYzdb',
+            tech: ['React', 'Node.js', 'Vite']
         },
         {
             title: 'Mon Site Portfolio ',
