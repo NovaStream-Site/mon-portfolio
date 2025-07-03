@@ -187,10 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS']
         },
         {
-            title: 'Site Portfolio Responsif',
+            title: 'Mon Site Portfolio ',
             description: 'Un portfolio personnel conçu pour être entièrement responsif et présenter mes compétences et projets.',
             image: 'https://i.ibb.co/rLd131C/Capture.png',
-            github: 'https://github.com/your-username/responsive-portfolio',
+            github: 'https://github.com/NovaStream-Site/mon-portfolio',
             demo: 'https://your-demo-link.com/portfolio',
             tech: ['HTML', 'CSS', 'JavaScript']
         },
