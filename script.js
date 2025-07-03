@@ -195,12 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
-            title: 'Application de Gestion de Tâches',
-            description: 'Une application web intuitive pour organiser et suivre les tâches quotidiennes avec authentification utilisateur.',
-            image: 'https://placehold.co/600x400/993366/FFFFFF?text=Task+Manager+App',
-            github: 'https://github.com/your-username/task-manager-app',
-            demo: 'https://your-demo-link.com/task-manager',
-            tech: ['React', 'Firebase', 'CSS']
+            title: 'Site de Gestion de Tâches',
+            description: 'Un site web intuitive pour organiser et suivre les tâches quotidiennes avec authentification utilisateur.',
+            image: 'https://i.ibb.co/hJkGqqqS/Capture.png',
+            github: 'https://github.com/NovaStream-Site/Gestion-de-Taches',
+            demo: 'https://novastream-site.github.io/Gestion-de-Taches/',
+            tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
             title: 'Petit Site Web (HTML/CSS/JS)',
