@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'L\'Avenir du Travail',
             description: 'Une analyse visuelle de la transformation du marché de l\'emploi à l\'horizon 2030.',
-            image: 'https://placehold.co/600x400/339966/FFFFFF?text=Small+Website',
-            github: 'https://github.com/your-username/small-website-project',
+            image: 'https://i.ibb.co/DHhCTLpc/Capture.png',
+            github: 'https://github.com/NovaStream-Site/mon-portfolio',
             demo: 'https://novastream-site.github.io/mon-portfolio/travail.html',
             tech: ['HTML', 'CSS', 'JavaScript']
         },
