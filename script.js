@@ -210,12 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
-            title: 'Jeu en C++',
-            description: 'Un petit jeu développé en C++, explorant les concepts de la programmation orientée objet et la logique de jeu.',
-            image: 'https://placehold.co/600x400/996633/FFFFFF?text=C++Game',
-            github: 'https://github.com/your-username/cpp-game-project',
-            demo: 'https://your-demo-link.com/cpp-game',
-            tech: ['C++']
+            title: 'IA & Humanité',
+            description: 'Plongez au cœur de la révolution de l\'IA, comprenez son impact sur notre quotidien et explorez les enjeux cruciaux pour l\'avenir de l\'humanité. ',
+            image: 'https://i.ibb.co/MxjsSg6j/Capture.png',
+            github: 'https://github.com/NovaStream-Site/mon-portfolio',
+            demo: 'https://novastream-site.github.io/mon-portfolio/ia.html',
+            tech: ['Info', 'IA', 'Web']
         },
     ];
 
