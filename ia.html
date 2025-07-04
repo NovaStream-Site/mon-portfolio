@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA : Menace ou Outil ? - Le Site Complet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050A30;
+            color: #F7F7FF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: #001C55;
+            border: 1px solid #0A2472;
+        }
+        .text-accent {
+            color: #00A6FB;
+        }
+        .bg-accent {
+            background-color: #00A6FB;
+        }
+        .nav-link:hover {
+            color: #00A6FB;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #00A6FB;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(0, 166, 251, 0.4);
+            display: none; /* Hidden by default */
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .back-to-top.show {
+            display: block;
+            opacity: 1;
+        }
+        .btn-toggle-details {
+            background-color: #0A2472;
+            color: #F7F7FF;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-toggle-details:hover {
+            background-color: #001C55;
+        }
+        .details-content {
+            display: none;
+        }
+        .faq-item {
+            background-color: #001C55;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #F7F7FF;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #0A2472;
+        }
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            color: #E0E0E0;
+            display: none;
+        }
+        .faq-question svg {
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active svg {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-blue-950 p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-black text-white nav-link">IA & Humanité</a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#home" class="text-gray-300 nav-link">Accueil</a>
+                <a href="#applications" class="text-gray-300 nav-link">Applications</a>
+                <a href="#risks" class="text-gray-300 nav-link">Risques</a>
+                <a href="#stats" class="text-gray-300 nav-link">Statistiques</a>
+                <a href="#cases" class="text-gray-300 nav-link">Cas d'Étude</a>
+                <a href="#timeline" class="text-gray-300 nav-link">Chronologie</a>
+                <a href="#debate" class="text-gray-300 nav-link">Débat</a>
+                <a href="#future" class="text-gray-300 nav-link">Le Futur</a>
+                <a href="#faq" class="text-gray-300 nav-link">FAQ</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-button" class="text-gray-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-950 pt-2 pb-4">
+            <a href="#home" class="block px-4 py-2 text-gray-300 nav-link">Accueil</a>
+            <a href="#applications" class="block px-4 py-2 text-gray-300 nav-link">Applications</a>
+            <a href="#risks" class="block px-4 py-2 text-gray-300 nav-link">Risques</a>
+            <a href="#stats" class="block px-4 py-2 text-gray-300 nav-link">Statistiques</a>
+            <a href="#cases" class="block px-4 py-2 text-gray-300 nav-link">Cas d'Étude</a>
+            <a href="#timeline" class="block px-4 py-2 text-gray-300 nav-link">Chronologie</a>
+            <a href="#debate" class="block px-4 py-2 text-gray-300 nav-link">Débat</a>
+            <a href="#future" class="block px-4 py-2 text-gray-300 nav-link">Le Futur</a>
+            <a href="#faq" class="block px-4 py-2 text-gray-300 nav-link">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black uppercase mb-4 leading-tight">
+                L'Intelligence Artificielle : <span class="text-accent">Défis</span> et <span class="text-accent">Opportunités</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+                Plongez au cœur de la révolution de l'IA, comprenez son impact sur notre quotidien et explorez les enjeux cruciaux pour l'avenir de l'humanité.
+            </p>
+            <a href="#applications" class="bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-600 transition duration-300">
+                Découvrir l'IA
+            </a>
+        </section>
+
+        <main class="space-y-24">
+
+            <section id="applications">
+                <h2 class="text-4xl font-bold text-center mb-12">L'IA au Service de l'<span class="text-accent">Humanité</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    L'intelligence artificielle n'est pas seulement une prouesse technologique ; elle est un catalyseur de progrès dans des domaines vitaux, transformant la manière dont nous abordons la santé, l'éducation, la protection de l'environnement et la recherche scientifique.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-2xl font-bold mb-4 text-accent">Santé : Diagnostics et Traitements Révolutionnés</h3>
+                        <p class="text-gray-300 mb-4">
+                            En médecine, l'IA analyse des volumes de données inégalés pour détecter des maladies à des stades ultra-précoces, souvent avant même l'apparition des symptômes. Des algorithmes d'apprentissage profond peuvent identifier des patterns dans les images médicales (radiographies, IRM) avec une précision supérieure à celle de l'œil humain. Elle aide également à la découverte de nouveaux médicaments, en simulant des interactions moléculaires, et personnalise les plans de traitement pour chaque patient, augmentant ainsi l'efficacité thérapeutique.
+                        </p>
+                        <h3 class="text-2xl font-bold mb-4 text-accent">Éducation : Apprentissage Personnalisé et Efficace</h3>
+                        <p class="text-gray-300 mb-4">
+                            L'IA révolutionne l'éducation en adaptant le contenu pédagogique au rythme et au style d'apprentissage de chaque élève. Les tuteurs virtuels basés sur l'IA peuvent offrir un soutien individualisé, identifier les lacunes et proposer des exercices ciblés. Elle automatise les tâches administratives des enseignants, leur permettant de se concentrer davantage sur l'interaction avec les élèves et la conception de cours innovants.
+                        </p>
+                        <div class="details-content" id="more-applications-details">
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Environnement et Recherche : Des Outils pour un Futur Durable</h3>
+                            <p class="text-gray-300 mb-4">
+                                Pour l'environnement, l'IA modélise les impacts du changement climatique, optimise la consommation d'énergie dans les villes intelligentes et aide à la gestion durable des ressources naturelles. En recherche scientifique, elle accélère les découvertes en analysant des ensembles de données massifs, en identifiant des corrélations complexes et en générant des hypothèses, repoussant les frontières de la connaissance dans des domaines comme l'astronomie, la génomique ou la science des matériaux.
+                            </p>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Villes Intelligentes et Transports</h3>
+                            <p class="text-gray-300 mb-4">
+                                Dans les villes, l'IA optimise la gestion du trafic, la consommation d'énergie des bâtiments, et la planification urbaine pour des environnements plus durables et efficaces. Les véhicules autonomes, alimentés par l'IA, promettent de réduire les accidents et les embouteillages, transformant la mobilité urbaine et interurbaine.
+                            </p>
+                        </div>
+                        <button class="btn-toggle-details" data-target="more-applications-details">Voir plus</button>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <div class="card rounded-lg shadow-2xl p-6">
+                            <h3 class="text-xl font-bold text-center mb-4">Impact et Potentiel de l'IA par Secteur</h3>
+                            <div class="chart-container">
+                                <canvas id="applicationsChart"></canvas>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-4 text-center">
+                                Ce graphique à barres illustre le niveau perçu d'impact et de potentiel de l'IA dans divers secteurs clés, soulignant son rôle croissant dans l'amélioration de nos vies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risks">
+                <h2 class="text-4xl font-bold text-center mb-12">Les Défis et Risques de l'<span class="text-red-500">IA</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    Si l'IA offre des opportunités sans précédent, son développement rapide soulève également des questions éthiques et sociétales majeures. Il est impératif d'anticiper et de gérer ces risques pour garantir un avenir où l'IA reste bénéfique.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="card rounded-lg shadow-2xl p-6">
+                            <h3 class="text-xl font-bold text-center mb-4">Principales Préoccupations liées à l'IA</h3>
+                            <div class="chart-container">
+                                <canvas id="risksChart"></canvas>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-4 text-center">
+                                Ce graphique en beignet montre la répartition des préoccupations majeures concernant l'IA, de l'impact sur l'emploi aux questions de sécurité et de vie privée.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-red-500">Impact sur l'Emploi et Biais Algorithmiques</h3>
+                        <p class="text-gray-300 mb-4">
+                            L'automatisation poussée par l'IA pourrait transformer radicalement le marché du travail, rendant obsolètes certains métiers et nécessitant une reconversion massive. Parallèlement, les systèmes d'IA, entraînés sur des données historiques, peuvent hériter et amplifier les biais humains, conduisant à des discriminations dans des contextes critiques comme le recrutement, l'octroi de prêts ou la justice.
+                        </p>
+                        <h3 class="text-2xl font-bold mb-4 text-red-500">Manipulation, Désinformation et Sécurité</h3>
+                        <p class="text-gray-300 mb-4">
+                            La capacité de l'IA à générer du contenu hyper-réaliste (deepfakes audio et vidéo) pose un risque sérieux de désinformation et de manipulation de l'opinion publique. Sur le plan de la sécurité, des IA malveillantes pourraient être utilisées pour des cyberattaques d'une complexité inédite, ou même pour le développement de systèmes d'armes autonomes, soulevant des questions éthiques profondes sur la guerre et la responsabilité.
+                        </p>
+                        <div class="details-content" id="more-risks-details">
+                            <h3 class="text-2xl font-bold mb-4 text-red-500">Vie Privée et Perte de Contrôle</h3>
+                            <p class="text-gray-300 mb-4">
+                                L'IA repose sur la collecte et l'analyse de vastes quantités de données personnelles, ce qui soulève des préoccupations majeures en matière de vie privée et de surveillance. De plus, bien que lointain, le scénario d'une "superintelligence" échappant au contrôle humain et agissant contre nos intérêts est un sujet de débat philosophique et scientifique qui ne peut être entièrement ignoré. Le problème de la "boîte noire" (manque de transparence des décisions de l'IA) est aussi une préoccupation croissante.
+                            </p>
+                        </div>
+                        <button class="btn-toggle-details" data-target="more-risks-details">Voir plus</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stats" class="py-16">
+                <h2 class="text-4xl font-bold text-center mb-12">Statistiques Clés de l'<span class="text-accent">IA</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    L'IA n'est plus une niche, mais une industrie en pleine explosion, attirant des investissements massifs et transformant rapidement le paysage économique mondial.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+                    <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
+                        <p class="text-6xl font-black text-accent mb-2">30%+</p>
+                        <p class="text-lg text-gray-300">Croissance annuelle du marché de l'IA</p>
+                        <p class="text-sm text-gray-400 mt-2">Projection d'ici 2030</p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
+                        <p class="text-6xl font-black text-accent mb-2">$500 Md</p>
+                        <p class="text-lg text-gray-300">Investissements mondiaux en IA en 2024</p>
+                        <p class="text-sm text-gray-400 mt-2">Estimation</p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
+                        <p class="text-6xl font-black text-accent mb-2">80%</p>
+                        <p class="text-lg text-gray-300">Entreprises explorant l'IA</p>
+                        <p class="text-sm text-gray-400 mt-2">Adoption ou exploration de l'IA</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases" class="py-16">
+                <h2 class="text-4xl font-bold text-center mb-12">Cas d'<span class="text-accent">Étude</span> : L'IA en Action</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    Découvrez comment l'intelligence artificielle est appliquée concrètement pour résoudre des problèmes complexes et créer de la valeur dans le monde réel.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">Découverte de Médicaments</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            L'IA accélère la recherche de nouvelles molécules et la prédiction de leurs effets, réduisant considérablement le temps et le coût du développement de nouveaux médicaments. Des entreprises utilisent l'IA pour identifier des candidats médicaments potentiels en quelques mois au lieu de plusieurs années.
+                        </p>
+                        <p class="text-xs text-gray-500">Exemple : Insilico Medicine</p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">Conduite Autonome</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Les systèmes d'IA sont au cœur des véhicules autonomes, permettant la perception de l'environnement, la prise de décision en temps réel et la navigation. Cela promet de révolutionner la sécurité routière et l'efficacité des transports.
+                        </p>
+                        <p class="text-xs text-gray-500">Exemple : Waymo, Tesla Autopilot</p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">Agriculture de Précision</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            L'IA analyse les données des capteurs (météo, sol, santé des cultures) pour optimiser l'irrigation, la fertilisation et la détection des maladies. Cela permet une utilisation plus efficace des ressources et une augmentation des rendements.
+                        </p>
+                        <p class="text-xs text-gray-500">Exemple : Blue River Technology</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="timeline">
+                <h2 class="text-4xl font-bold text-center mb-8">Chronologie : L'Évolution <span class="text-accent">Accélérée</span> de l'IA</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    L'IA a parcouru un long chemin depuis ses prémices théoriques jusqu'à son intégration massive dans notre quotidien. Voici quelques jalons marquants de son histoire.
+                </p>
+                <div class="relative w-full max-w-4xl mx-auto">
+                    <div class="absolute left-1/2 w-1 bg-accent h-full -translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        <div class="relative flex items-center md:justify-start">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg ml-4 md:ml-8">
+                                <p class="font-bold text-accent">1950 - Test de Turing</p>
+                                <p class="text-sm text-gray-300">Alan Turing propose un test pour évaluer l'intelligence d'une machine, jetant les bases de l'IA moderne.</p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-center md:justify-end">
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg mr-4 md:mr-8 text-right">
+                                <p class="font-bold text-accent">1956 - Conférence de Dartmouth</p>
+                                <p class="text-sm text-gray-300">Le terme "Intelligence Artificielle" est officiellement inventé, marquant la naissance du domaine.</p>
+                            </div>
+                             <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="hidden md:block w-1/2"></div>
+                        </div>
+                         <div class="relative flex items-center md:justify-start">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg ml-4 md:ml-8">
+                                <p class="font-bold text-accent">1997 - Deep Blue bat Kasparov</p>
+                                <p class="text-sm text-gray-300">L'ordinateur d'IBM bat le champion du monde d'échecs Garry Kasparov, un tournant pour les systèmes experts.</p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-center md:justify-end">
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg mr-4 md:mr-8 text-right">
+                                <p class="font-bold text-accent">2012 - Percées du Deep Learning</p>
+                                <p class="text-sm text-gray-300">L'apprentissage profond commence à dominer la reconnaissance d'images et vocale, grâce à des réseaux neuronaux plus puissants.</p>
+                            </div>
+                             <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="hidden md:block w-1/2"></div>
+                        </div>
+                        <div class="relative flex items-center md:justify-start">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg ml-4 md:ml-8">
+                                <p class="font-bold text-accent">2016 - AlphaGo bat Lee Sedol</p>
+                                <p class="text-sm text-gray-300">L'IA de DeepMind bat le champion du monde de Go, marquant une étape majeure pour l'apprentissage par renforcement.</p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-center md:justify-end">
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg mr-4 md:mr-8 text-right">
+                                <p class="font-bold text-accent">2022 - Essor des IA Génératives</p>
+                                <p class="text-sm text-gray-300">L'arrivée de modèles comme GPT-3/4 et Midjourney rend l'IA de génération de texte et d'images accessible au grand public, bouleversant de nombreux secteurs.</p>
+                            </div>
+                             <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="hidden md:block w-1/2"></div>
+                        </div>
+                        <div class="relative flex items-center md:justify-start">
+                            <div class="hidden md:block w-1/2"></div>
+                            <div class="absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-accent"></div>
+                            <div class="w-full md:w-1/2 p-4 card rounded-lg shadow-lg ml-4 md:ml-8">
+                                <p class="font-bold text-accent">2024 - IA Embarquée et Edge AI</p>
+                                <p class="text-sm text-gray-300">L'IA se déplace vers les appareils (smartphones, IoT) pour des traitements plus rapides et respectueux de la vie privée.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="debate">
+                <h2 class="text-4xl font-bold text-center mb-4">Vers une IA <span class="text-accent">Responsable</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                   L'avenir de l'IA n'est pas une fatalité, mais une construction collective. Pour maximiser ses bénéfices et minimiser ses risques, quatre piliers sont essentiels pour guider son développement et son déploiement.
+                </p>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <p class="text-5xl mb-4">⚖️</p>
+                        <h3 class="text-2xl font-bold text-accent mb-2">Régulation</h3>
+                        <p class="text-gray-300 text-sm">Mettre en place des cadres législatifs clairs et adaptatifs pour encadrer l'innovation tout en protégeant les droits et la sécurité des citoyens.</p>
+                    </div>
+                     <div class="card p-6 rounded-lg shadow-lg">
+                        <p class="text-5xl mb-4">🤝</p>
+                        <h3 class="text-2xl font-bold text-accent mb-2">Éthique</h3>
+                        <p class="text-gray-300 text-sm">Définir et appliquer des principes éthiques (transparence, équité, responsabilité, non-discrimination) à chaque étape du cycle de vie de l'IA.</p>
+                    </div>
+                     <div class="card p-6 rounded-lg shadow-lg">
+                        <p class="text-5xl mb-4">📚</p>
+                        <h3 class="text-2xl font-bold text-accent mb-2">Éducation</h3>
+                        <p class="text-gray-300 text-sm">Préparer les générations futures et les travailleurs actuels aux transformations du marché de l'emploi et à la compréhension des systèmes d'IA.</p>
+                    </div>
+                     <div class="card p-6 rounded-lg shadow-lg">
+                        <p class="text-5xl mb-4">🌐</p>
+                        <h3 class="text-2xl font-bold text-accent mb-2">Collaboration</h3>
+                        <p class="text-gray-300 text-sm">Favoriser une coopération mondiale entre les gouvernements, le secteur privé, la recherche et la société civile pour aborder les défis transnationaux de l'IA.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="future" class="py-16">
+                <h2 class="text-4xl font-bold text-center mb-12">Le <span class="text-accent">Futur</span> de l'IA : Tendances et Perspectives</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-12">
+                    L'IA est en constante évolution. Voici un aperçu des tendances qui façonneront son avenir et son impact sur nos vies.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">Vers l'IA Générale (AGI)</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            La recherche sur l'Intelligence Artificielle Générale, capable de comprendre, d'apprendre et d'appliquer l'intelligence à un large éventail de tâches, progresse. Bien que lointaine, l'AGI pourrait transformer radicalement notre société.
+                        </p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">IA Explicable (XAI)</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Face au problème de la "boîte noire", la XAI vise à rendre les décisions des systèmes d'IA plus transparentes et compréhensibles pour les humains, essentielle pour la confiance et la responsabilité.
+                        </p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">IA et Durabilité</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            L'IA jouera un rôle crucial dans la lutte contre le changement climatique, l'optimisation des ressources et la promotion d'une économie circulaire, contribuant à un avenir plus durable.
+                        </p>
+                    </div>
+                    <div class="card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-accent mb-3">IA Quantique</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            La convergence de l'IA et de l'informatique quantique promet des capacités de calcul exponentiellement plus puissantes, ouvrant la voie à des avancées inimaginables dans la modélisation et la résolution de problèmes complexes.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="py-16">
+                <h2 class="text-4xl font-bold text-center mb-12">Foire Aux Questions (<span class="text-accent">FAQ</span>)</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Qu'est-ce que l'Intelligence Artificielle (IA) ?
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="faq-answer">
+                            L'IA est un domaine de l'informatique qui vise à créer des machines capables de simuler l'intelligence humaine, notamment en matière d'apprentissage, de raisonnement, de résolution de problèmes, de perception et de compréhension du langage.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            L'IA va-t-elle remplacer tous les emplois ?
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="faq-answer">
+                            L'IA va certainement transformer le marché du travail en automatisant de nombreuses tâches répétitives. Cependant, elle est plus susceptible de créer de nouveaux emplois et de modifier les rôles existants plutôt que de remplacer tous les emplois. L'accent sera mis sur les compétences complémentaires à l'IA.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Qu'est-ce qu'un biais algorithmique ?
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="faq-answer">
+                            Un biais algorithmique se produit lorsque les données utilisées pour entraîner une IA reflètent des préjugés existants dans la société. L'IA apprend ces biais et peut les reproduire ou les amplifier dans ses décisions, conduisant à des résultats injustes ou discriminatoires.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Comment l'IA peut-elle être utilisée de manière éthique ?
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="faq-answer">
+                            L'utilisation éthique de l'IA implique la transparence sur son fonctionnement, la responsabilité en cas d'erreur, l'équité dans ses décisions, le respect de la vie privée, et la conception de systèmes qui servent le bien-être humain et la société dans son ensemble.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 border-t border-blue-900 pt-8">
+            <p class="text-gray-400">Site complet sur l'intelligence artificielle. Tous droits réservés &copy; 2025.</p>
+            <p class="text-xs text-gray-600 mt-2">Aucune donnée SVG ou Mermaid.js n'a été utilisée dans la création de ce document.</p>
+        </footer>
+
+    </div>
+
+    <button id="back-to-top-btn" class="back-to-top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#F7F7FF';
+            const GRID_COLOR = 'rgba(247, 247, 255, 0.1)';
+            const PALETTE = {
+                accent: '#00A6FB',
+                secondary: '#0A2472',
+                risk: '#DC2626',
+                warning: '#F59E0B',
+                info: '#3B82F6',
+                success: '#10B981',
+                dark: '#001C55'
+            };
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine ? currentLine + ' ' : '') + word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#050A30',
+                        titleFont: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 14
+                        },
+                        padding: 12,
+                        cornerRadius: 8,
+                        borderColor: PALETTE.accent,
+                        borderWidth: 1
+                    }
+                }
+            };
+
+            const applicationsCtx = document.getElementById('applicationsChart');
+            if(applicationsCtx) {
+                new Chart(applicationsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Santé', 'Éducation', wrapLabel('Recherche scientifique'), 'Environnement', 'Transports', 'Industrie', 'Finance', 'Art & Création'].map(l => Array.isArray(l) ? l : wrapLabel(l)),
+                        datasets: [{
+                            label: "Impact et Potentiel de l'IA",
+                            data: [90, 75, 85, 70, 80, 78, 65, 60],
+                            backgroundColor: [PALETTE.accent, PALETTE.success, PALETTE.info, PALETTE.warning, PALETTE.secondary, '#6A0572', '#8B5CF6', '#FFD700'],
+                            borderColor: PALETTE.dark,
+                            borderWidth: 2,
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: FONT_COLOR }
+                            }
+                        },
+                        plugins: {
+                           ...defaultChartOptions.plugins,
+                           legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            const risksCtx = document.getElementById('risksChart');
+            if(risksCtx) {
+                new Chart(risksCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [wrapLabel('Perte d\'emploi'), 'Vie privée', 'Biais & Discrimination', 'Sécurité', 'Manipulation', wrapLabel('Manque de contrôle'), 'Éthique'].map(l => Array.isArray(l) ? l : wrapLabel(l)),
+                        datasets: [{
+                            label: 'Répartition des préoccupations',
+                            data: [28, 18, 16, 14, 12, 8, 4],
+                            backgroundColor: [PALETTE.risk, PALETTE.warning, PALETTE.info, PALETTE.accent, '#FF6384', '#9966FF', '#C0C0C0'],
+                            borderColor: PALETTE.dark,
+                            borderWidth: 4,
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        plugins: {
+                           ...defaultChartOptions.plugins,
+                           legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: FONT_COLOR,
+                                    font: { size: 14 },
+                                    padding: 20
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                     // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Back to top button functionality
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Toggle details functionality
+            document.querySelectorAll('.btn-toggle-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        if (targetElement.classList.contains('hidden')) {
+                            targetElement.classList.remove('hidden');
+                            targetElement.style.display = 'block';
+                            this.textContent = 'Voir moins';
+                        } else {
+                            targetElement.classList.add('hidden');
+                            targetElement.style.display = 'none';
+                            this.textContent = 'Voir plus';
+                        }
+                    }
+                });
+            });
+
+            // Initialize details content to be hidden
+            document.querySelectorAll('.details-content').forEach(element => {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            });
+
+            // Mobile menu toggle
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // FAQ toggle functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const svg = this.querySelector('svg');
+                    
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        this.classList.remove('active');
+                    } else {
+                        // Close all other open FAQs
+                        document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                            if (otherAnswer !== answer && otherAnswer.style.display === 'block') {
+                                otherAnswer.style.display = 'none';
+                                otherAnswer.previousElementSibling.classList.remove('active');
+                            }
+                        });
+                        answer.style.display = 'block';
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
