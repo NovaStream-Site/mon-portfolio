@@ -203,11 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
-            title: 'Petit Site Web (HTML/CSS/JS)',
-            description: 'Un exemple de petit site web statique, démontrant les bases du développement front-end.',
+            title: 'L\'Avenir du Travail',
+            description: 'Une analyse visuelle de la transformation du marché de l\'emploi à l\'horizon 2030.',
             image: 'https://placehold.co/600x400/339966/FFFFFF?text=Small+Website',
             github: 'https://github.com/your-username/small-website-project',
-            demo: 'https://your-demo-link.com/small-website',
+            demo: 'https://novastream-site.github.io/mon-portfolio/travail.html',
             tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
